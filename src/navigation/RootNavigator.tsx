@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
+import MainTabNavigator from './MainTabNavigator';
 import DetailsScreen from '../screens/DetailsScreen';
 import SplashScreen from '../screens/SplashScreen';
 import { RootStackParamList } from './types';
@@ -18,10 +18,10 @@ const RootNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="Home"
+        initialRouteName="MainTabs"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#3b82f6', // blue-500
+            backgroundColor: '#8e4ae7', // Changed to primary color
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -30,9 +30,9 @@ const RootNavigator = () => {
         }}
       >
         <Stack.Screen 
-          name="Home" 
-          component={HomeScreen} 
-          options={{ title: 'TableCheck Home' }}
+          name="MainTabs" 
+          component={MainTabNavigator} 
+          options={{ headerShown: false }}
         />
         <Stack.Screen 
           name="Details" 

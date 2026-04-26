@@ -1,0 +1,20 @@
+{
+  "welcome": "Welcome",
+  "home_screen": "Home Screen",
+  "go_to_details": "Go to Details",
+  "change_language": "Change Language",
+  "home": "Home",
+  "explore": "Explore",
+  "list": "List",
+  "bookings": "Bookings",
+  "account": "Account",
+  "search_placeholder": "Search restaurants, dishes...",
+  "featured_restaurants": "Featured Restaurants",
+  "nearby_restaurants": "Nearby You",
+  "see_all": "See all",
+  "sushi": "Sushi",
+  "pizza": "Pizza",
+  "bbq": "BBQ",
+  "cafe": "Cafe",
+  "rating": "Rating"
+}
