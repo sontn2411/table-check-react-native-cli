@@ -16,5 +16,31 @@
   "pizza": "Pizza",
   "bbq": "Nướng",
   "cafe": "Cà phê",
-  "rating": "Đánh giá"
+  "rating": "Đánh giá",
+  "explore_screen": "Màn hình Khám phá",
+  "bookings_screen": "Màn hình Đặt chỗ",
+  "account_screen": "Màn hình Tài khoản",
+  "splash_loading": "Đang chuẩn bị trải nghiệm tuyệt vời cho bạn...",
+  "num_people": "{{count}} người",
+  "select_location": "Chọn địa điểm",
+  "hello_user": "Xin chào, {{name}}",
+  "suggested_restaurants": "Gợi ý cho bạn",
+  "home_question": "Bạn muốn đặt bàn ở đâu hôm nay?",
+  "booking": {
+    "title": "Đặt bàn",
+    "date": "Ngày",
+    "time": "Giờ",
+    "guests": "Khách",
+    "select_date": "Chọn ngày đặt bàn",
+    "select_time": "Chọn giờ",
+    "num_guests": "Số lượng khách",
+    "confirm": "Xác nhận",
+    "today": "Hôm nay",
+    "tomorrow": "Ngày mai",
+    "no_time_available": "Rất tiếc, đã hết khung giờ đặt bàn cho hôm nay.",
+    "guest_note": "* Đối với nhóm trên 10 người, vui lòng liên hệ trực tiếp với nhà hàng để được sắp xếp chỗ ngồi tốt nhất.",
+    "adult_guests": "Bàn dành cho {{count}} khách",
+    "large_group": "Dành cho nhóm đông người",
+    "month": "Tháng {{month}}, {{year}}"
+  }
 }

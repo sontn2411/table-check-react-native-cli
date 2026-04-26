@@ -1,5 +1,6 @@
 export const COLORS = {
-  primary: '#3b82f6', // blue-500
+  primary: '#8e4ae7',
+  primaryDark: '#6b21a8',
   secondary: '#10b981', // emerald-500
   background: '#f3f4f6', // gray-100
   text: '#1f2937', // gray-800

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Search, Calendar, User } from 'lucide-react-native';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/home/HomeScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import BookingsScreen from '../screens/BookingsScreen';
 import AccountScreen from '../screens/AccountScreen';
@@ -16,9 +16,9 @@ const MainTabNavigator = () => {
 
   return (
     <Tab.Navigator
-      tabBar={(props) => <CustomTabBar {...props} />}
+      tabBar={props => <CustomTabBar {...props} />}
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
       }}
     >
       <Tab.Screen
@@ -45,7 +45,9 @@ const MainTabNavigator = () => {
         options={{
           title: t('bookings'),
           tabBarLabel: t('bookings'),
-          tabBarIcon: ({ color, size }) => <Calendar color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <Calendar color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen

@@ -16,5 +16,31 @@
   "pizza": "Pizza",
   "bbq": "BBQ",
   "cafe": "Cafe",
-  "rating": "Rating"
+  "rating": "Rating",
+  "explore_screen": "Explore Screen",
+  "bookings_screen": "Bookings Screen",
+  "account_screen": "Account Screen",
+  "splash_loading": "Preparing a great experience for you...",
+  "num_people": "{{count}} people",
+  "select_location": "Select Location",
+  "hello_user": "Hello, {{name}}",
+  "suggested_restaurants": "Recommended for you",
+  "home_question": "Where would you like to book today?",
+  "booking": {
+    "title": "Book a Table",
+    "date": "Date",
+    "time": "Time",
+    "guests": "Guests",
+    "select_date": "Select Date",
+    "select_time": "Select Time",
+    "num_guests": "Number of Guests",
+    "confirm": "Confirm",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "no_time_available": "Sorry, no time slots available for today.",
+    "guest_note": "* For groups over 10 people, please contact the restaurant directly for the best seating arrangement.",
+    "adult_guests": "Table for {{count}} guests",
+    "large_group": "For large groups",
+    "month": "{{monthName}}, {{year}}"
+  }
 }

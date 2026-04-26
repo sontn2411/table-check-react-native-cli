@@ -20,9 +20,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
 import { scale, verticalScale, moderateScale } from '../../utils/responsive';
+import { COLORS } from '../../constants/theme';
 
 // --- Constants ---
-const ACTIVE_GRADIENT = ['#8e4ae7', '#6b21a8']; // primary to primary-dark
+const ACTIVE_GRADIENT = [COLORS.primary, COLORS.primaryDark];
 const INACTIVE_COLOR = '#9ca3af'; // gray-400
 const TAB_BAR_HEIGHT = 70;
 

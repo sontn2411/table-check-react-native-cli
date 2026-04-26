@@ -6,7 +6,7 @@ const BookingsScreen = () => {
   const { t } = useTranslation();
   return (
     <View className="flex-1 items-center justify-center bg-gray-100">
-      <Text className="text-2xl font-bold text-primary">Bookings Screen</Text>
+      <Text className="text-2xl font-bold text-primary">{t('bookings_screen')}</Text>
     </View>
   );
 };

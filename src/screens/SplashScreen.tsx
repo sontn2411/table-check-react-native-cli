@@ -148,7 +148,10 @@ const RadialGlowRings = () => {
   );
 };
 
+import { useTranslation } from 'react-i18next';
+
 const SplashScreen = ({ onFinish }: { onFinish: () => void }) => {
+  const { t } = useTranslation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const logoScaleAnim = useRef(new Animated.Value(0.7)).current;
   const exitFade = useRef(new Animated.Value(1)).current;
@@ -256,7 +259,7 @@ const SplashScreen = ({ onFinish }: { onFinish: () => void }) => {
         <View className="pb-16 items-center">
           <ActivityIndicator size="small" color="#7c3aed" />
           <Text className="text-xs text-violet-600 opacity-70 mt-2">
-            Đang chuẩn bị trải nghiệm tuyệt vời cho bạn...
+            {t('splash_loading')}
           </Text>
         </View>
       </Animated.View>

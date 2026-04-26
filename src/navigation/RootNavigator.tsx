@@ -5,6 +5,7 @@ import MainTabNavigator from './MainTabNavigator';
 import DetailsScreen from '../screens/DetailsScreen';
 import SplashScreen from '../screens/SplashScreen';
 import { RootStackParamList } from './types';
+import { COLORS } from '../constants/theme';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,11 +18,11 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator 
+      <Stack.Navigator
         initialRouteName="MainTabs"
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#8e4ae7', // Changed to primary color
+            backgroundColor: COLORS.primary,
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -29,16 +30,16 @@ const RootNavigator = () => {
           },
         }}
       >
-        <Stack.Screen 
-          name="MainTabs" 
-          component={MainTabNavigator} 
+        <Stack.Screen
+          name="MainTabs"
+          component={MainTabNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen 
-          name="Details" 
-          component={DetailsScreen} 
+        {/* <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
           options={{ title: 'Item Details' }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
