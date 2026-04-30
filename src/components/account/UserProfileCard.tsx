@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Pencil, ChevronRight } from 'lucide-react-native';
 import { useAuthStore } from '../../store/useAuthStore';
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
@@ -10,6 +11,7 @@ import { RootStackParamList } from '../../navigation/types';
 type ProfileCardNavigationProp = NativeStackNavigationProp<RootStackParamList, 'MainTabs'>;
 
 const UserProfileCard = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<ProfileCardNavigationProp>();
   const { user, avatars, updateAvatar, userProfiles } = useAuthStore();
   const currentAvatar = user?.email ? avatars[user.email] : null;
@@ -18,7 +20,7 @@ const UserProfileCard = () => {
   const handleImageAction = (result: any) => {
     if (result.didCancel) return;
     if (result.errorCode) {
-      Alert.alert('Lỗi', result.errorMessage || 'Không thể lấy ảnh');
+      Alert.alert(t('profile.error_title') || 'Error', result.errorMessage || t('profile.error_image'));
       return;
     }
 
@@ -36,25 +38,25 @@ const UserProfileCard = () => {
     };
 
     Alert.alert(
-      'Cập nhật ảnh đại diện',
-      'Chọn phương thức bạn muốn sử dụng',
+      t('profile.change_avatar'),
+      t('profile.pick_image'),
       [
         {
-          text: 'Chụp ảnh mới',
+          text: t('profile.take_photo'),
           onPress: async () => {
             const result = await launchCamera(options);
             handleImageAction(result);
           },
         },
         {
-          text: 'Chọn từ thư viện',
+          text: t('profile.from_library'),
           onPress: async () => {
             const result = await launchImageLibrary(options);
             handleImageAction(result);
           },
         },
         {
-          text: 'Hủy',
+          text: t('profile.cancel'),
           style: 'cancel',
         },
       ],

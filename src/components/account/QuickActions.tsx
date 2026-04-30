@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Calendar, Heart, Ticket, Star } from 'lucide-react-native';
 
 const QuickActions = () => {
+  const { t } = useTranslation();
   const actions = [
-    { icon: Calendar, label: 'Lưu đặt bàn' },
-    { icon: Heart, label: 'Yêu thích' },
-    { icon: Ticket, label: 'Mã giảm giá' },
-    { icon: Star, label: 'Điểm tích lũy' },
+    { icon: Calendar, label: t('settings.saved_bookings') },
+    { icon: Heart, label: t('settings.favorites') },
+    { icon: Ticket, label: t('settings.promo_codes') },
+    { icon: Star, label: t('settings.points_balance') },
   ];
 
   return (
@@ -29,7 +31,7 @@ const QuickActions = () => {
       </View>
       <View className="bg-purple-50/30 py-2 items-center border-t border-gray-100">
         <Text className="text-[10px] text-gray-400 italic">
-          Đăng nhập để xem thông tin chi tiết
+          {t('settings.login_to_view_details')}
         </Text>
       </View>
     </View>

@@ -25,8 +25,8 @@ const MainTabNavigator = () => {
         name="HomeTab"
         component={HomeScreen}
         options={{
-          title: t('home'),
-          tabBarLabel: t('home'),
+          title: t('home_tab'),
+          tabBarLabel: t('home_tab'),
           tabBarIcon: ({ color, size }) => <Home color={color} size={size} />,
         }}
       />

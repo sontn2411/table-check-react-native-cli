@@ -1,18 +1,20 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { ChevronRight, MapPin, Calendar, Users } from 'lucide-react-native';
 
 const UserBookings = () => {
+  const { t } = useTranslation();
   return (
     <View className="mx-4 mt-8">
       {/* Header Section */}
       <View className="flex-row justify-between items-center mb-4">
         <Text className="text-lg font-bold text-gray-900">
-          Đơn đặt bàn của tôi
+          {t('settings.my_bookings')}
         </Text>
         <TouchableOpacity className="flex-row items-center">
           <Text className="text-primary text-xs font-medium mr-1">
-            Xem tất cả
+            {t('settings.see_all')}
           </Text>
           <ChevronRight color="#8e4ae7" size={14} />
         </TouchableOpacity>
@@ -40,7 +42,7 @@ const UserBookings = () => {
             </Text>
             <View className="bg-primary/10 px-2 py-1 rounded-lg">
               <Text className="text-primary text-[10px] font-bold">
-                Sắp tới
+                {t('settings.upcoming')}
               </Text>
             </View>
           </View>
@@ -60,7 +62,7 @@ const UserBookings = () => {
           <View className="flex-row items-center mt-2">
             <Calendar color="#8e4ae7" size={12} />
             <Text className="text-gray-500 text-[10px] ml-1">
-              24/05/2025 • 19:00 • 2 người
+              24/05/2025 • 19:00 • 2 {t('num_people', { count: 2 }).split(' ')[1]}
             </Text>
           </View>
         </View>

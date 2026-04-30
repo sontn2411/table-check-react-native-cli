@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { ShieldCheck } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const SecurityBanner = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
@@ -16,11 +18,10 @@ const SecurityBanner = () => {
 
       <View className="flex-1 ml-4 mr-2">
         <Text className="text-[13px] font-bold text-gray-800">
-          Đăng nhập để bảo mật thông tin
+          {t('settings.security_title')}
         </Text>
         <Text className="text-[10px] text-gray-400 mt-1 leading-[14px]">
-          Thông tin cá nhân của bạn sẽ được bảo mật tuyệt đối khi sử dụng tài
-          khoản Tablecheck.
+          {t('settings.security_desc')}
         </Text>
       </View>
 
@@ -28,7 +29,7 @@ const SecurityBanner = () => {
         onPress={() => navigation.navigate('Login')}
         className="bg-primary px-4 py-2 rounded-xl"
       >
-        <Text className="text-white text-[12px] font-bold">Đăng nhập</Text>
+        <Text className="text-white text-[12px] font-bold">{t('auth.login')}</Text>
       </TouchableOpacity>
     </View>
   );

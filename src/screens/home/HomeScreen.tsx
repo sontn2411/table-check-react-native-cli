@@ -33,9 +33,11 @@ import FeaturedOffers from '../../components/home/FeaturedOffers';
 import CategoryList from '../../components/home/CategoryList';
 import RestaurantList from '../../components/home/RestaurantList';
 import NewsList from '../../components/home/NewsList';
+import { useAuthStore } from '../../store/useAuthStore';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { t } = useTranslation();
+  const { user } = useAuthStore();
   const [activeCategory, setActiveCategory] = useState('all');
   const bookingSheetRef = useRef<BottomSheetModal>(null);
   const [bookingType, setBookingType] = useState<
@@ -57,7 +59,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       >
         <View className="px-5 mt-3">
           <Text className="text-xl font-bold">
-            {t('hello_user', { name: 'Sơn' })}
+            {t('hello_user', { name: user?.username || 'Guest' })}
           </Text>
           <Text className="text-gray-500 text-sm">{t('home_question')}</Text>
         </View>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -42,51 +43,55 @@ const InputField = ({
   keyboardType = 'default',
   editable = true,
   onPress,
-}: any) => (
-  <View className="mb-6">
-    <Text className="text-gray-500 text-sm font-medium mb-2 ml-1">{label}</Text>
-    <TouchableOpacity
-      activeOpacity={onPress ? 0.7 : 1}
-      onPress={onPress}
-      disabled={!editable && !onPress}
-      className={`flex-row items-center border rounded-2xl px-4 py-3.5 ${
-        editable || onPress
-          ? 'bg-gray-50 border-gray-100'
-          : 'bg-gray-100 border-gray-200'
-      }`}
-    >
-      <Icon
-        size={18}
-        color={editable || onPress ? '#8e4ae7' : '#9ca3af'}
-        strokeWidth={2}
-      />
-      {onPress ? (
-        <Text
-          className={`flex-1 ml-3 font-medium text-base ${
-            value ? 'text-gray-900' : 'text-gray-400'
-          }`}
-        >
-          {value || placeholder}
-        </Text>
-      ) : (
-        <TextInput
-          className={`flex-1 ml-3 font-medium text-base ${
-            editable ? 'text-gray-900' : 'text-gray-500'
-          }`}
-          value={value}
-          onChangeText={onChangeText}
-          placeholder={placeholder}
-          placeholderTextColor="#9ca3af"
-          keyboardType={keyboardType}
-          editable={editable}
-          multiline={label === 'Địa chỉ'}
+}: any) => {
+  const { t } = useTranslation();
+  return (
+    <View className="mb-6">
+      <Text className="text-gray-500 text-sm font-medium mb-2 ml-1">{label}</Text>
+      <TouchableOpacity
+        activeOpacity={onPress ? 0.7 : 1}
+        onPress={onPress}
+        disabled={!editable && !onPress}
+        className={`flex-row items-center border rounded-2xl px-4 py-3.5 ${
+          editable || onPress
+            ? 'bg-gray-50 border-gray-100'
+            : 'bg-gray-100 border-gray-200'
+        }`}
+      >
+        <Icon
+          size={18}
+          color={editable || onPress ? '#8e4ae7' : '#9ca3af'}
+          strokeWidth={2}
         />
-      )}
-    </TouchableOpacity>
-  </View>
-);
+        {onPress ? (
+          <Text
+            className={`flex-1 ml-3 font-medium text-base ${
+              value ? 'text-gray-900' : 'text-gray-400'
+            }`}
+          >
+            {value || placeholder}
+          </Text>
+        ) : (
+          <TextInput
+            className={`flex-1 ml-3 font-medium text-base ${
+              editable ? 'text-gray-900' : 'text-gray-500'
+            }`}
+            value={value}
+            onChangeText={onChangeText}
+            placeholder={placeholder}
+            placeholderTextColor="#9ca3af"
+            keyboardType={keyboardType}
+            editable={editable}
+            multiline={label === t('profile.address')}
+          />
+        )}
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const EditProfileScreen = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<EditProfileNavigationProp>();
   const { user, avatars, updateAvatar, userProfiles, updateProfile } =
     useAuthStore();
@@ -109,8 +114,8 @@ const EditProfileScreen = () => {
     if (result.errorCode) {
       Toast.show({
         type: 'error',
-        text1: 'Lỗi',
-        text2: result.errorMessage || 'Không thể lấy ảnh',
+        text1: t('profile.error_title') || 'Error',
+        text2: result.errorMessage || t('profile.error_image'),
       });
       return;
     }
@@ -120,8 +125,8 @@ const EditProfileScreen = () => {
       updateAvatar(user.email, imageUri);
       Toast.show({
         type: 'success',
-        text1: 'Thành công',
-        text2: 'Đã cập nhật ảnh đại diện',
+        text1: t('profile.confirm'),
+        text2: t('profile.success_avatar'),
       });
     }
   };
@@ -134,25 +139,25 @@ const EditProfileScreen = () => {
     };
 
     Alert.alert(
-      'Thay đổi ảnh đại diện',
-      'Chọn phương thức bạn muốn sử dụng',
+      t('profile.change_avatar'),
+      t('profile.pick_image'),
       [
         {
-          text: 'Chụp ảnh mới',
+          text: t('profile.take_photo'),
           onPress: async () => {
             const result = await launchCamera(options);
             handleImageAction(result);
           },
         },
         {
-          text: 'Chọn từ thư viện',
+          text: t('profile.from_library'),
           onPress: async () => {
             const result = await launchImageLibrary(options);
             handleImageAction(result);
           },
         },
         {
-          text: 'Hủy',
+          text: t('profile.cancel'),
           style: 'cancel',
         },
       ],
@@ -172,8 +177,8 @@ const EditProfileScreen = () => {
 
     Toast.show({
       type: 'success',
-      text1: 'Thành công',
-      text2: 'Thông tin của bạn đã được cập nhật!',
+      text1: t('profile.confirm'),
+      text2: t('profile.success_update'),
     });
 
     setTimeout(() => {
@@ -208,7 +213,7 @@ const EditProfileScreen = () => {
           <ArrowLeft color="#1f2937" size={24} />
         </TouchableOpacity>
         <Text className="text-lg font-bold text-gray-900">
-          Chỉnh sửa thông tin
+          {t('profile.edit_title')}
         </Text>
         <View className="w-10" />
       </View>
@@ -241,19 +246,19 @@ const EditProfileScreen = () => {
               <Camera size={16} color="white" strokeWidth={2.5} />
             </View>
           </TouchableOpacity>
-          <Text className="text-primary font-bold mt-4">Thay đổi ảnh</Text>
+          <Text className="text-primary font-bold mt-4">{t('profile.change_avatar')}</Text>
         </View>
 
         {/* Form Fields */}
         <View className="mt-2">
           <InputField
-            label="Tên đăng nhập"
+            label={t('profile.username')}
             value={user?.username || ''}
             icon={User}
             editable={false}
           />
           <InputField
-            label="Địa chỉ Email"
+            label={t('profile.email')}
             value={email}
             icon={Mail}
             editable={false}
@@ -262,33 +267,33 @@ const EditProfileScreen = () => {
           <View className="border-b border-gray-50 mb-8" />
 
           <InputField
-            label="Họ và tên"
+            label={t('profile.full_name')}
             value={name}
             onChangeText={setName}
             icon={User}
-            placeholder="Nhập họ và tên"
+            placeholder={t('profile.placeholder_name')}
           />
           <InputField
-            label="Số điện thoại"
+            label={t('profile.phone')}
             value={phone}
             onChangeText={setPhone}
             icon={Phone}
-            placeholder="Nhập số điện thoại"
+            placeholder={t('profile.placeholder_phone')}
             keyboardType="phone-pad"
           />
           <InputField
-            label="Ngày sinh"
+            label={t('profile.birthday')}
             value={birthday}
             icon={Calendar}
-            placeholder="Chọn ngày sinh"
+            placeholder={t('profile.select_birthday')}
             onPress={() => setShowDatePicker(true)}
           />
           <InputField
-            label="Địa chỉ"
+            label={t('profile.address')}
             value={address}
             onChangeText={setAddress}
             icon={MapPin}
-            placeholder="Nhập địa chỉ"
+            placeholder={t('profile.placeholder_address')}
           />
         </View>
 
@@ -300,7 +305,7 @@ const EditProfileScreen = () => {
         >
           <Check size={20} color="white" strokeWidth={3} />
           <Text className="text-white font-bold text-lg ml-2">
-            Lưu thay đổi
+            {t('profile.save_changes')}
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -311,13 +316,14 @@ const EditProfileScreen = () => {
           {Platform.OS === 'ios' && (
             <View className="bg-gray-100 p-4 flex-row justify-end border-t border-gray-200">
               <TouchableOpacity onPress={() => setShowDatePicker(false)}>
-                <Text className="text-primary font-bold text-lg">Xác nhận</Text>
+                <Text className="text-primary font-bold text-lg">{t('profile.confirm')}</Text>
               </TouchableOpacity>
             </View>
           )}
           <DateTimePicker
             value={date}
             mode="date"
+            title={t('profile.select_birthday')}
             display={Platform.OS === 'ios' ? 'spinner' : 'default'}
             onChange={onDateChange}
             maximumDate={new Date()}

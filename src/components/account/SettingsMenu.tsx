@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import {
   User,
   CreditCard,
@@ -22,18 +23,19 @@ type SettingsMenuNavigationProp = NativeStackNavigationProp<
 >;
 
 const SettingsMenu = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<SettingsMenuNavigationProp>();
   const { user, logout } = useAuthStore();
   const isLoggedIn = !!user;
 
   const handleLogout = () => {
     Alert.alert(
-      'Đăng xuất',
-      'Bạn có chắc chắn muốn đăng xuất tài khoản không?',
+      t('auth.logout'),
+      t('auth.logout_confirm'),
       [
-        { text: 'Hủy', style: 'cancel' },
+        { text: t('auth.logout_cancel'), style: 'cancel' },
         {
-          text: 'Đăng xuất',
+          text: t('auth.logout'),
           style: 'destructive',
           onPress: () => logout(),
         },
@@ -45,25 +47,25 @@ const SettingsMenu = () => {
   const menuItems = [
     {
       icon: User,
-      label: 'Thông tin cá nhân',
+      label: t('settings.personal_info'),
       memberOnly: true,
       onPress: () => navigation.navigate('EditProfile'),
     },
-    // { icon: CreditCard, label: 'Phương thức thanh toán', memberOnly: true },
-    { icon: Bell, label: 'Thông báo', memberOnly: false },
-    { icon: HelpCircle, label: 'Trung tâm trợ giúp', memberOnly: false },
+    // { icon: CreditCard, label: t('settings.payment'), memberOnly: true },
+    { icon: Bell, label: t('settings.notifications'), memberOnly: false },
+    { icon: HelpCircle, label: t('settings.help'), memberOnly: false },
     {
       icon: Gift,
-      label: 'Giới thiệu Tablecheck cho bạn bè',
+      label: t('settings.about'),
       memberOnly: false,
     },
-    { icon: ShieldCheck, label: 'Điều khoản & Chính sách', memberOnly: false },
+    { icon: ShieldCheck, label: t('settings.about'), memberOnly: false },
   ].filter(item => !item.memberOnly || isLoggedIn);
 
   return (
     <View className="mx-4 mt-8 mb-32">
       <Text className="text-lg font-bold text-gray-900 mb-4">
-        Tiện ích & Cài đặt
+        {t('settings.personal_info')}
       </Text>
 
       <View className="bg-white rounded-2xl border border-gray-50 shadow-sm overflow-hidden">
@@ -94,7 +96,7 @@ const SettingsMenu = () => {
         >
           <LogOut color="#ef4444" size={20} strokeWidth={2} />
           <Text className="ml-2 text-red-500 font-bold">
-            Đăng xuất tài khoản
+            {t('auth.logout')}
           </Text>
         </TouchableOpacity>
       )}

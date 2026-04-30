@@ -6,18 +6,20 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { NEWS } from '../../data/restaurants';
 import { scale, verticalScale, moderateScale } from '../../utils/responsive';
 import { COLORS } from '../../constants/theme';
 import { Calendar } from 'lucide-react-native';
 
 const NewsList = () => {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Tin tức & Sự kiện</Text>
+        <Text style={styles.headerTitle}>{t('home.news_events')}</Text>
         <TouchableOpacity>
-          <Text style={styles.seeAll}>Xem tất cả</Text>
+          <Text style={styles.seeAll}>{t('settings.see_all')}</Text>
         </TouchableOpacity>
       </View>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -26,6 +27,7 @@ import Toast from 'react-native-toast-message';
 const { width } = Dimensions.get('window');
 
 const LoginScreen = () => {
+  const { t } = useTranslation();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const setAuth = useAuthStore(state => state.setAuth);
@@ -43,8 +45,8 @@ const LoginScreen = () => {
         setAuth(data.user, data.accessToken, data.refreshToken);
         Toast.show({
           type: 'success',
-          text1: 'Đăng nhập thành công',
-          text2: `Chào mừng trở lại, ${data.user.username}!`,
+          text1: t('auth.login_success'),
+          text2: t('auth.welcome_back', { name: data.user.username }),
         });
         // Chuyển hướng về màn hình chính hoặc màn hình trước đó
         setTimeout(() => {
@@ -59,10 +61,10 @@ const LoginScreen = () => {
       const message =
         error.response?.data?.error?.message ||
         error.response?.data?.message ||
-        'Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.';
+        t('auth.login_fail');
       Toast.show({
         type: 'error',
-        text1: 'Lỗi đăng nhập',
+        text1: t('auth.error_login_title'),
         text2: message,
       });
     },
@@ -72,8 +74,8 @@ const LoginScreen = () => {
     if (!identity || !password) {
       Toast.show({
         type: 'info',
-        text1: 'Thông báo',
-        text2: 'Vui lòng nhập Email/Username và Mật khẩu.',
+        text1: t('profile.cancel'),
+        text2: t('auth.fill_info'),
       });
       return;
     }
@@ -115,22 +117,22 @@ const LoginScreen = () => {
                 />
 
                 <Text className="text-gray-600  text-xs font-medium text-center px-10">
-                  Đặt bàn dễ dàng, trải nghiệm trọn vẹn
+                  {t('auth.slogan')}
                 </Text>
               </View>
             </View>
 
             <View className="px-6 -mt-10 bg-white rounded-t-[40px] pt-8 flex-1 z-10">
               <Text className="text-xl font-bold text-center text-gray-900">
-                Chào mừng bạn trở lại!
+                {t('auth.login_title')}
               </Text>
               <Text className="text-gray-500 text-center text-xs mt-1 mb-6">
-                Đăng nhập để tiếp tục đặt bàn và nhận ưu đãi
+                {t('auth.login_desc')}
               </Text>
 
               <StyledInput
                 icon="person-outline"
-                placeholder="Email hoặc Username"
+                placeholder={t('auth.username_or_email')}
                 value={identity}
                 onChangeText={setIdentity}
                 autoCapitalize="none"
@@ -138,7 +140,7 @@ const LoginScreen = () => {
 
               <StyledInput
                 icon="lock-closed-outline"
-                placeholder="Mật khẩu"
+                placeholder={t('auth.password')}
                 isPassword
                 value={password}
                 onChangeText={setPassword}
@@ -146,7 +148,7 @@ const LoginScreen = () => {
 
               <TouchableOpacity className="items-end mb-4">
                 <Text className="text-primary font-bold text-xs">
-                  Quên mật khẩu?
+                  {t('auth.forgot_password')}
                 </Text>
               </TouchableOpacity>
 
@@ -165,7 +167,7 @@ const LoginScreen = () => {
                   <ActivityIndicator color="white" />
                 ) : (
                   <Text className="text-white font-bold text-lg">
-                    Đăng nhập
+                    {t('auth.login')}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -173,13 +175,13 @@ const LoginScreen = () => {
               {/* Footer */}
               <View className="flex-row justify-center mt-auto pb-10">
                 <Text className="text-gray-500 text-xs">
-                  Chưa có tài khoản?{' '}
+                  {t('auth.no_account')}{' '}
                 </Text>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('Register')}
                 >
                   <Text className="text-primary font-bold text-xs">
-                    Đăng ký ngay
+                    {t('auth.register_now')}
                   </Text>
                 </TouchableOpacity>
               </View>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -28,6 +29,7 @@ import Toast from 'react-native-toast-message';
 const { width } = Dimensions.get('window');
 
 const RegisterScreen = () => {
+  const { t } = useTranslation();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -43,8 +45,8 @@ const RegisterScreen = () => {
     onSuccess: data => {
       Toast.show({
         type: 'success',
-        text1: 'Thành công',
-        text2: 'Tài khoản của bạn đã được tạo thành công! ✨',
+        text1: t('profile.confirm'),
+        text2: t('auth.register_success'),
       });
       setTimeout(() => {
         navigation.navigate('Login');
@@ -54,10 +56,10 @@ const RegisterScreen = () => {
       const message =
         error.response?.data?.error?.message ||
         error.response?.data?.message ||
-        'Có lỗi xảy ra, vui lòng thử lại sau.';
+        t('auth.error_register_desc');
       Toast.show({
         type: 'error',
-        text1: 'Lỗi đăng ký',
+        text1: t('auth.error_register_title'),
         text2: message,
       });
     },
@@ -67,8 +69,8 @@ const RegisterScreen = () => {
     if (!username || !email || !password) {
       Toast.show({
         type: 'info',
-        text1: 'Thông báo',
-        text2: 'Vui lòng nhập đầy đủ thông tin.',
+        text1: t('profile.cancel'),
+        text2: t('auth.fill_info'),
       });
       return;
     }
@@ -76,8 +78,8 @@ const RegisterScreen = () => {
     if (!agreed) {
       Toast.show({
         type: 'info',
-        text1: 'Điều khoản',
-        text2: 'Bạn cần đồng ý với điều khoản sử dụng.',
+        text1: t('auth.terms'),
+        text2: t('auth.must_agree'),
       });
       return;
     }
@@ -119,7 +121,7 @@ const RegisterScreen = () => {
                 />
 
                 <Text className="text-gray-600  text-xs font-medium text-center px-10">
-                  Đặt bàn dễ dàng, trải nghiệm trọn vẹn
+                  {t('auth.slogan')}
                 </Text>
               </View>
             </View>
@@ -127,15 +129,15 @@ const RegisterScreen = () => {
             <View className="px-6 -mt-10 bg-white rounded-t-[40px] pt-8 flex-1 z-10">
               <ScrollView showsVerticalScrollIndicator={false}>
                 <Text className="text-xl font-bold text-center text-gray-900">
-                  Tạo tài khoản mới
+                  {t('auth.register_title')}
                 </Text>
                 <Text className="text-gray-500 text-center text-xs mt-1 mb-6">
-                  Tham gia cộng đồng để nhận ưu đãi hấp dẫn
+                  {t('auth.register_desc')}
                 </Text>
 
                 <StyledInput
                   icon="person-outline"
-                  placeholder="Username"
+                  placeholder={t('profile.username')}
                   value={username}
                   onChangeText={setUsername}
                   autoCapitalize="none"
@@ -143,7 +145,7 @@ const RegisterScreen = () => {
 
                 <StyledInput
                   icon="mail-outline"
-                  placeholder="Email"
+                  placeholder={t('profile.email')}
                   value={email}
                   onChangeText={setEmail}
                   keyboardType="email-address"
@@ -152,7 +154,7 @@ const RegisterScreen = () => {
 
                 <StyledInput
                   icon="lock-closed-outline"
-                  placeholder="Mật khẩu"
+                  placeholder={t('auth.password')}
                   isPassword
                   value={password}
                   onChangeText={setPassword}
@@ -169,13 +171,13 @@ const RegisterScreen = () => {
                     <Circle color="#d1d5db" size={20} />
                   )}
                   <Text className="text-gray-500 text-[11px] ml-2 flex-1">
-                    Tôi đồng ý với{' '}
+                    {t('auth.agree_terms')}{' '}
                     <Text className="text-primary font-bold">
-                      Điều khoản sử dụng
+                      {t('auth.terms')}
                     </Text>{' '}
-                    và{' '}
+                    {t('auth.and')}{' '}
                     <Text className="text-primary font-bold">
-                      Chính sách bảo mật
+                      {t('auth.privacy')}
                     </Text>
                   </Text>
                 </TouchableOpacity>
@@ -195,7 +197,7 @@ const RegisterScreen = () => {
                     <ActivityIndicator color="white" />
                   ) : (
                     <Text className="text-white font-bold text-lg">
-                      Đăng ký
+                      {t('auth.register')}
                     </Text>
                   )}
                 </TouchableOpacity>
@@ -203,13 +205,13 @@ const RegisterScreen = () => {
                 {/* Footer */}
                 <View className="flex-row justify-center mt-8 pb-10">
                   <Text className="text-gray-500 text-xs">
-                    Đã có tài khoản?{' '}
+                    {t('auth.has_account')}{' '}
                   </Text>
                   <TouchableOpacity
                     onPress={() => navigation.navigate('Login')}
                   >
                     <Text className="text-primary font-bold text-xs">
-                      Đăng nhập ngay
+                      {t('auth.login_now')}
                     </Text>
                   </TouchableOpacity>
                 </View>

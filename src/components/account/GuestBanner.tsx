@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { User } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigation/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const GuestBanner = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
@@ -18,23 +20,23 @@ const GuestBanner = () => {
       {/* Content */}
       <View className="flex-1">
         <Text className="text-[16px] font-bold text-gray-900 mb-1.5">
-          Đăng nhập để bắt đầu
+          {t('auth.guest_welcome')}
         </Text>
         <Text className="text-[13px] text-gray-500 mb-4 leading-[18px]">
-          Lưu thông tin, theo dõi đặt bàn và nhận ưu đãi hấp dẫn
+          {t('auth.guest_desc')}
         </Text>
         <View className="flex-row gap-2.5">
           <TouchableOpacity 
             onPress={() => navigation.navigate('Login')}
             className="bg-primary py-2.5 px-4 rounded-xl flex-1 items-center"
           >
-            <Text className="text-white font-bold text-[13px]">Đăng nhập</Text>
+            <Text className="text-white font-bold text-[13px]">{t('auth.login')}</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             onPress={() => navigation.navigate('Register')}
             className="border border-[#d8b4fe] py-2.5 px-4 rounded-xl flex-1 items-center bg-transparent"
           >
-            <Text className="text-primary font-bold text-[13px]">Đăng ký</Text>
+            <Text className="text-primary font-bold text-[13px]">{t('auth.register')}</Text>
           </TouchableOpacity>
         </View>
       </View>

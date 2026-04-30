@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { BANNERS } from '../../data';
 import { scale, verticalScale, moderateScale } from '../../utils/responsive';
 import { COLORS } from '../../constants/theme';
+import { useTranslation } from 'react-i18next';
 import { Sparkles, ArrowRight } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
@@ -19,6 +20,7 @@ const CAROUSEL_WIDTH = width;
 const ITEM_WIDTH = CAROUSEL_WIDTH;
 
 const BannerCarousel = () => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
@@ -52,7 +54,7 @@ const BannerCarousel = () => {
           <View style={styles.contentArea}>
             <View style={styles.topBadge}>
               <Sparkles size={14} color="#fde047" fill="#fde047" />
-              <Text style={styles.topBadgeText}>ƯU ĐÃI ĐẶC BIỆT</Text>
+              <Text style={styles.topBadgeText}>{t('home.special_offer')}</Text>
             </View>
 
             <View style={styles.titleContainer}>
@@ -69,7 +71,7 @@ const BannerCarousel = () => {
             </View>
 
             <TouchableOpacity style={styles.discoverButton}>
-              <Text style={styles.discoverText}>Khám phá ngay</Text>
+              <Text style={styles.discoverText}>{t('home.discover_now')}</Text>
               <ArrowRight size={16} color={COLORS.primary} />
             </TouchableOpacity>
           </View>

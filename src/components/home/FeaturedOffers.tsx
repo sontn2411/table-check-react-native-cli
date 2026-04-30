@@ -10,9 +10,11 @@ import {
 import { OFFERS } from '../../data/restaurants';
 import { scale, verticalScale, moderateScale } from '../../utils/responsive';
 import { COLORS } from '../../constants/theme';
+import { useTranslation } from 'react-i18next';
 import { Ticket } from 'lucide-react-native';
 
 const FeaturedOffers = () => {
+  const { t } = useTranslation();
   const renderItem = ({ item }: { item: typeof OFFERS[0] }) => (
     <TouchableOpacity activeOpacity={0.9} style={styles.card}>
       <Image source={{ uri: item.image }} style={styles.image} />
@@ -25,7 +27,7 @@ const FeaturedOffers = () => {
           <Text style={styles.date}>{item.date}</Text>
           <TouchableOpacity style={styles.ctaButton}>
             <Ticket size={14} color="#fff" />
-            <Text style={styles.ctaText}>Lấy mã</Text>
+            <Text style={styles.ctaText}>{t('home.get_code')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -35,9 +37,9 @@ const FeaturedOffers = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Ưu đãi nổi bật</Text>
+        <Text style={styles.headerTitle}>{t('home.featured_offers')}</Text>
         <TouchableOpacity>
-          <Text style={styles.seeAll}>Xem tất cả</Text>
+          <Text style={styles.seeAll}>{t('settings.see_all')}</Text>
         </TouchableOpacity>
       </View>
 
