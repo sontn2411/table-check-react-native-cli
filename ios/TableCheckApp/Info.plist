@@ -54,5 +54,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>TableCheckApp cần truy cập Camera để bạn chụp ảnh đại diện.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>TableCheckApp cần truy cập Thư viện ảnh để bạn chọn ảnh đại diện.</string>
 </dict>
 </plist>

@@ -13,18 +13,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/types';
 import { useTranslation } from 'react-i18next';
 import { scale, verticalScale, moderateScale } from '../../utils/responsive';
-import {
-  Search,
-  Star,
-  Coffee,
-  Utensils,
-  Pizza as PizzaIcon,
-  Flame,
-  MapPin,
-  ChevronDown,
-  Bell,
-  Languages,
-} from 'lucide-react-native';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import LocationBottomSheet from '../../components/LocationBottomSheet';
 

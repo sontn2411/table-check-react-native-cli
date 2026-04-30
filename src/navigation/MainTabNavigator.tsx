@@ -4,7 +4,7 @@ import { Home, Search, Calendar, User } from 'lucide-react-native';
 import HomeScreen from '../screens/home/HomeScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import BookingsScreen from '../screens/BookingsScreen';
-import AccountScreen from '../screens/AccountScreen';
+import AccountScreen from '../screens/account/AccountScreen';
 import { MainTabParamList } from './types';
 import { useTranslation } from 'react-i18next';
 import CustomTabBar from './components/CustomTabBar';

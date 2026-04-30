@@ -4,6 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainTabNavigator from './MainTabNavigator';
 import DetailsScreen from '../screens/DetailsScreen';
 import SplashScreen from '../screens/SplashScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
+import EditProfileScreen from '../screens/account/EditProfileScreen';
 import { RootStackParamList } from './types';
 import { COLORS } from '../constants/theme';
 
@@ -21,25 +24,14 @@ const RootNavigator = () => {
       <Stack.Navigator
         initialRouteName="MainTabs"
         screenOptions={{
-          headerStyle: {
-            backgroundColor: COLORS.primary,
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+          headerShown: false,
+          animation: 'slide_from_right',
         }}
       >
-        <Stack.Screen
-          name="MainTabs"
-          component={MainTabNavigator}
-          options={{ headerShown: false }}
-        />
-        {/* <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
-          options={{ title: 'Item Details' }}
-        /> */}
+        <Stack.Screen name="MainTabs" component={MainTabNavigator} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
