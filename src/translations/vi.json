@@ -49,7 +49,8 @@
     "guest_note": "* Đối với nhóm trên 10 người, vui lòng liên hệ trực tiếp với nhà hàng để được sắp xếp chỗ ngồi tốt nhất.",
     "adult_guests": "Bàn dành cho {{count}} khách",
     "large_group": "Dành cho nhóm đông người",
-    "month": "Tháng {{month}}, {{year}}"
+    "month": "Tháng {{month}}, {{year}}",
+    "your_location": "Khu vực của bạn"
   },
   "auth": {
     "login": "Đăng nhập",

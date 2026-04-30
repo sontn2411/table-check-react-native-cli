@@ -1,12 +1,17 @@
 export const LOCATIONS = [
-  'Hà Nội',
-  'TP. Hồ Chí Minh',
-  'Đà Nẵng',
-  'Hải Phòng',
-  'Cần Thơ',
-  'Nha Trang',
-  'Huế',
-  'Đà Lạt',
+  'Hoàn Kiếm, Hà Nội',
+  'Ba Đình, Hà Nội',
+  'Cầu Giấy, Hà Nội',
+  'Hai Bà Trưng, Hà Nội',
+  'Đống Đa, Hà Nội',
+  'Tây Hồ, Hà Nội',
+  'Long Biên, Hà Nội',
+  'Thanh Xuân, Hà Nội',
+  'Quận 1, TP. HCM',
+  'Quận 3, TP. HCM',
+  'Quận 7, TP. HCM',
+  'Thủ Đức, TP. HCM',
+  'Hải Châu, Đà Nẵng',
 ];
 
 export const ALL_TIMES = [

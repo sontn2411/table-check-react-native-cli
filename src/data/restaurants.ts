@@ -9,6 +9,8 @@ export interface Restaurant {
   distance: string;
   address: string;
   isFeatured?: boolean;
+  latitude?: number;
+  longitude?: number;
 }
 
 export const CATEGORIES = [
@@ -60,8 +62,10 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     category: 'Sushi',
     priceRange: '200k - 500k',
     distance: '1.2 km',
-    address: 'Tầng 5, Vincom Bà Triệu, Hai Bà Trưng, Hà Nội',
+    address: 'Hai Bà Trưng, Hà Nội',
     isFeatured: true,
+    latitude: 21.0094,
+    longitude: 105.8412,
   },
   {
     id: '2',
@@ -73,8 +77,10 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     category: 'Pizza',
     priceRange: '150k - 400k',
     distance: '2.5 km',
-    address: '5 Phan Kế Bính, Ba Đình, Hà Nội',
+    address: 'Ba Đình, Hà Nội',
     isFeatured: true,
+    latitude: 21.0430,
+    longitude: 105.8200,
   },
   {
     id: '3',
@@ -86,12 +92,14 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     category: 'BBQ',
     priceRange: '250k - 600k',
     distance: '4.1 km',
-    address: 'Tầng 1, Mipec Savico, Long Biên, Hà Nội',
+    address: 'Long Biên, Hà Nội',
     isFeatured: false,
+    latitude: 21.0512,
+    longitude: 105.8777,
   },
   {
     id: '4',
-    name: 'The Coffee House',
+    name: 'The Coffee House - Cầu Giấy',
     image:
       'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80',
     rating: 4.3,
@@ -99,8 +107,66 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     category: 'Cafe',
     priceRange: '40k - 90k',
     distance: '0.5 km',
-    address: '12 Cầu Giấy, Hà Nội',
+    address: 'Cầu Giấy, Hà Nội',
     isFeatured: false,
+    latitude: 21.0285,
+    longitude: 105.7942,
+  },
+  {
+    id: '5',
+    name: 'Dim Sum House - Hoàn Kiếm',
+    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    rating: 4.7,
+    reviews: 89,
+    category: 'Dimsum',
+    priceRange: '100k - 300k',
+    distance: '0.8 km',
+    address: 'Hoàn Kiếm, Hà Nội',
+    isFeatured: true,
+    latitude: 21.0285,
+    longitude: 105.8542,
+  },
+  {
+    id: '6',
+    name: 'Grill & Chill - Đống Đa',
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+    rating: 4.6,
+    reviews: 210,
+    category: 'Steak',
+    priceRange: '300k - 800k',
+    distance: '2.1 km',
+    address: 'Đống Đa, Hà Nội',
+    isFeatured: false,
+    latitude: 21.0245,
+    longitude: 105.8412,
+  },
+  {
+    id: '7',
+    name: 'Manwah - Lotte Liễu Giai',
+    image: 'https://images.unsplash.com/photo-1552590635-27c2c2128b15?auto=format&fit=crop&w=800&q=80',
+    rating: 4.8,
+    reviews: 430,
+    category: 'Hotpot',
+    priceRange: '300k - 500k',
+    distance: '3.0 km',
+    address: 'Ba Đình, Hà Nội',
+    isFeatured: true,
+    latitude: 21.0388,
+    longitude: 105.8200,
+  },
+  {
+    id: '8',
+    name: 'Bún Chả Hương Liên',
+    image: 'https://images.unsplash.com/photo-1562607378-d7bb74187313?auto=format&fit=crop&w=800&q=80',
+    rating: 4.5,
+    reviews: 2500,
+    category: 'Việt Nam',
+    priceRange: '50k - 150k',
+    distance: '1.5 km',
+    address: 'Hai Bà Trưng, Hà Nội',
+    isFeatured: false,
+    latitude: 21.0155,
+    longitude: 105.8466,
   },
 ];
 
