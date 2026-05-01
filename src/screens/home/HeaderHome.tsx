@@ -5,11 +5,13 @@ import LocationBottomSheet from '../../components/LocationBottomSheet';
 import { useRef, useState } from 'react';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 
-import { useBookingStore } from '../../store/useBookingStore';
+import { useLocationStore } from '../../store/useLocationStore';
+
+import { LOCATION_COORDS } from '../../data/booking';
 
 const HeaderHome = () => {
   const { t, i18n } = useTranslation();
-  const { location, setLocation } = useBookingStore();
+  const { cityName, setManualLocation, requestLocation } = useLocationStore();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const toggleLanguage = () => {
@@ -22,7 +24,18 @@ const HeaderHome = () => {
   };
 
   const handleSelectLocation = (loc: string) => {
-    setLocation(loc);
+    if (loc === 'Vị trí hiện tại') {
+      requestLocation();
+      return;
+    }
+
+    const coords = LOCATION_COORDS[loc];
+    if (coords) {
+      setManualLocation(loc, coords.lat, coords.lng);
+    } else {
+      // Fallback for cities without explicit coords
+      setManualLocation(loc);
+    }
   };
 
   return (
@@ -34,7 +47,7 @@ const HeaderHome = () => {
         >
           <MapPin color="#8e4ae7" size={20} />
           <View className="flex-row items-center">
-            <Text className="text-base font-semibold">{location}</Text>
+            <Text className="text-base font-semibold">{cityName}</Text>
             <ChevronDown color="#8e4ae7" size={15} />
           </View>
         </TouchableOpacity>
@@ -58,7 +71,7 @@ const HeaderHome = () => {
 
       <LocationBottomSheet
         ref={bottomSheetRef}
-        selectedLocation={location}
+        selectedLocation={cityName}
         onSelect={handleSelectLocation}
       />
     </View>

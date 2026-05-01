@@ -11,10 +11,23 @@ interface SearchHomeProps {
 
 import { useBookingStore } from '../../store/useBookingStore';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { MainTabParamList } from '../../navigation/types';
+
+import { useLocationStore } from '../../store/useLocationStore';
 
 const SearchHome = ({ onOpenSheet }: SearchHomeProps) => {
   const { t } = useTranslation();
-  const { date, time, guests } = useBookingStore();
+  const { date, time, guests, setLocation } = useBookingStore();
+  const { cityName } = useLocationStore();
+  const navigation = useNavigation<NativeStackNavigationProp<MainTabParamList>>();
+
+  const handleSearch = () => {
+    // Đồng bộ địa điểm từ Home sang Booking trước khi chuyển trang
+    setLocation(cityName);
+    navigation.navigate('Bookings');
+  };
 
   return (
     <View
@@ -66,7 +79,11 @@ const SearchHome = ({ onOpenSheet }: SearchHomeProps) => {
       </TouchableOpacity>
 
       {/* Search Button */}
-      <TouchableOpacity style={styles.searchButton} className="bg-primary">
+      <TouchableOpacity
+        onPress={handleSearch}
+        style={styles.searchButton}
+        className="bg-primary"
+      >
         <Search size={20} color={COLORS.white} strokeWidth={3} />
       </TouchableOpacity>
     </View>

@@ -8,8 +8,10 @@ import BookingBottomSheet from '../../components/BookingBottomSheet';
 import LocationBottomSheet from '../../components/LocationBottomSheet';
 import RestaurantCard from '../../components/common/RestaurantCard';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useLocationStore } from '../../store/useLocationStore';
 import { useBookingStore } from '../../store/useBookingStore';
 import { MOCK_RESTAURANTS } from '../../data/restaurants';
+import { LOCATION_COORDS } from '../../data/booking';
 
 const BookingsScreen = () => {
   const { t } = useTranslation();
@@ -38,6 +40,15 @@ const BookingsScreen = () => {
 
   const handleOpenLocationSheet = () => {
     locationSheetRef.current?.present();
+  };
+
+  const handleSelectLocation = (loc: string) => {
+    if (loc === 'Vị trí hiện tại') {
+      const globalCity = useLocationStore.getState().cityName;
+      setLocation(globalCity);
+      return;
+    }
+    setLocation(loc);
   };
 
   return (
@@ -96,7 +107,7 @@ const BookingsScreen = () => {
       <LocationBottomSheet
         ref={locationSheetRef}
         selectedLocation={location}
-        onSelect={setLocation}
+        onSelect={handleSelectLocation}
       />
     </SafeScreen>
   );

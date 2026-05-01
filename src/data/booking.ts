@@ -1,4 +1,6 @@
 export const LOCATIONS = [
+  'Vị trí hiện tại',
+  'Nha Trang, Khánh Hòa',
   'Hoàn Kiếm, Hà Nội',
   'Ba Đình, Hà Nội',
   'Cầu Giấy, Hà Nội',
@@ -13,6 +15,16 @@ export const LOCATIONS = [
   'Thủ Đức, TP. HCM',
   'Hải Châu, Đà Nẵng',
 ];
+
+export const LOCATION_COORDS: Record<string, { lat: number, lng: number }> = {
+  'Nha Trang, Khánh Hòa': { lat: 12.2388, lng: 109.1968 },
+  'Hoàn Kiếm, Hà Nội': { lat: 21.0285, lng: 105.8542 },
+  'Ba Đình, Hà Nội': { lat: 21.0388, lng: 105.8200 },
+  'Cầu Giấy, Hà Nội': { lat: 21.0285, lng: 105.7942 },
+  'Hai Bà Trưng, Hà Nội': { lat: 21.0094, lng: 105.8412 },
+  'Đống Đa, Hà Nội': { lat: 21.0245, lng: 105.8412 },
+  'Long Biên, Hà Nội': { lat: 21.0512, lng: 105.8777 },
+};
 
 export const ALL_TIMES = [
   '08:00', '08:30', '09:00', '09:30', '10:00', '10:30',

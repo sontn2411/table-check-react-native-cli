@@ -53,6 +53,13 @@ const RestaurantCard = ({
           </Text>
           <Text style={styles.distance}>{restaurant.distance}</Text>
         </View>
+
+        <TouchableOpacity
+          style={styles.bookButton}
+          // onPress={() => alert(`Đặt bàn tại: ${restaurant.name}`)}
+        >
+          <Text style={styles.bookButtonText}>Đặt bàn ngay</Text>
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
@@ -161,6 +168,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#1e293b',
     marginLeft: scale(4),
+  },
+  bookButton: {
+    backgroundColor: COLORS.primary,
+    paddingVertical: verticalScale(10),
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: verticalScale(12),
+  },
+  bookButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: moderateScale(13),
   },
 });
 

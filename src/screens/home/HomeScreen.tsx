@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -34,10 +34,12 @@ import CategoryList from '../../components/home/CategoryList';
 import RestaurantList from '../../components/home/RestaurantList';
 import NewsList from '../../components/home/NewsList';
 import { useAuthStore } from '../../store/useAuthStore';
+import { useLocationStore } from '../../store/useLocationStore';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { t } = useTranslation();
   const { user } = useAuthStore();
+  const { requestLocation, permissionGranted } = useLocationStore();
   const [activeCategory, setActiveCategory] = useState('all');
   const bookingSheetRef = useRef<BottomSheetModal>(null);
   const [bookingType, setBookingType] = useState<
@@ -48,6 +50,13 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     setBookingType(type);
     bookingSheetRef.current?.present();
   };
+
+  // Hỏi quyền vị trí khi vào app lần đầu
+  useEffect(() => {
+    if (permissionGranted === null) {
+      requestLocation();
+    }
+  }, [permissionGranted, requestLocation]);
 
   return (
     <SafeScreen>

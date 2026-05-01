@@ -29,6 +29,8 @@ const BookingFilter = ({ onOpenSheet, onOpenLocation }: BookingFilterProps) => {
     },
   );
 
+  console.log('====', location);
+
   return (
     <View
       style={styles.container}

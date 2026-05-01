@@ -6,7 +6,7 @@ import {
   BottomSheetView,
   BottomSheetFlatList,
 } from '@gorhom/bottom-sheet';
-import { MapPin, Check } from 'lucide-react-native';
+import { MapPin, Check, Target } from 'lucide-react-native';
 import { COLORS } from '../constants/theme';
 import { scale, verticalScale, moderateScale } from '../utils/responsive';
 import { LOCATIONS } from '../data/booking';
@@ -55,10 +55,14 @@ const LocationBottomSheet = forwardRef<
           onPress={() => handleSelect(item)}
         >
           <View style={styles.leftContent}>
+            {item === 'Vị trí hiện tại' && (
+              <Target size={18} color={COLORS.primary} style={{ marginRight: scale(8) }} />
+            )}
             <Text
               style={[
                 styles.locationText,
                 isActive && styles.activeLocationText,
+                item === 'Vị trí hiện tại' && { color: COLORS.primary, fontWeight: 'bold' }
               ]}
             >
               {item}
