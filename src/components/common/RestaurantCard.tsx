@@ -5,6 +5,10 @@ import { COLORS } from '../../constants/theme';
 import { scale, verticalScale, moderateScale } from '../../utils/responsive';
 import { Restaurant } from '../../data/restaurants';
 
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/types';
+
 interface RestaurantCardProps {
   restaurant: Restaurant;
   horizontal?: boolean;
@@ -14,6 +18,8 @@ const RestaurantCard = ({
   restaurant,
   horizontal = true,
 }: RestaurantCardProps) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <TouchableOpacity
       activeOpacity={0.9}
@@ -49,14 +55,14 @@ const RestaurantCard = ({
         <View style={styles.locationRow}>
           <MapPin size={12} color="#64748b" />
           <Text style={styles.locationText} numberOfLines={1}>
-            {restaurant.address}
+            {restaurant.address.replace(/Phường/gi, 'P.')}
           </Text>
           <Text style={styles.distance}>{restaurant.distance}</Text>
         </View>
 
-        <TouchableOpacity
+        <TouchableOpacity 
           style={styles.bookButton}
-          // onPress={() => alert(`Đặt bàn tại: ${restaurant.name}`)}
+          onPress={() => navigation.navigate('ConfirmBooking', { restaurant })}
         >
           <Text style={styles.bookButtonText}>Đặt bàn ngay</Text>
         </TouchableOpacity>

@@ -6,6 +6,9 @@ import { scale, moderateScale, verticalScale } from '../../utils/responsive';
 import { COLORS } from '../../constants/theme';
 import { Restaurant } from '../../data/restaurants';
 import { Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/types';
 
 interface ExploreRestaurantMarkerProps {
   restaurant: Restaurant;
@@ -20,6 +23,8 @@ const ExploreRestaurantMarker = ({
   onPress,
   onDismiss,
 }: ExploreRestaurantMarkerProps) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <Marker
       coordinate={{
@@ -84,7 +89,7 @@ const ExploreRestaurantMarker = ({
               {Platform.OS === 'ios' ? (
                 <CalloutSubview
                   onPress={() => {
-                    // alert(`Mở trang đặt bàn cho: ${restaurant.name}`);
+                    navigation.navigate('ConfirmBooking', { restaurant });
                   }}
                 >
                   <TouchableOpacity style={styles.bookButton}>
@@ -95,7 +100,7 @@ const ExploreRestaurantMarker = ({
                 <TouchableOpacity
                   style={styles.bookButton}
                   onPress={() => {
-                    // alert(`Mở trang đặt bàn cho: ${restaurant.name}`);
+                    navigation.navigate('ConfirmBooking', { restaurant });
                   }}
                 >
                   <Text style={styles.bookButtonText}>Đặt bàn</Text>

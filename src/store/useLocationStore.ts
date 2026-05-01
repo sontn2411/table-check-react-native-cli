@@ -17,7 +17,11 @@ interface LocationState {
 
   // Actions
   requestLocation: () => Promise<void>;
-  setManualLocation: (cityName: string, latitude?: number, longitude?: number) => void;
+  setManualLocation: (
+    cityName: string,
+    latitude?: number,
+    longitude?: number,
+  ) => void;
 }
 
 const reverseGeocode = async (lat: number, lng: number): Promise<string> => {
@@ -29,6 +33,7 @@ const reverseGeocode = async (lat: number, lng: number): Promise<string> => {
       },
     );
     const data = await response.json();
+    console.log('====', data);
     const city =
       data.address?.city ||
       data.address?.town ||
@@ -50,7 +55,11 @@ export const useLocationStore = create<LocationState>((set, get) => ({
   permissionGranted: null,
   error: null,
 
-  setManualLocation: (cityName, latitude = DEFAULT_LAT, longitude = DEFAULT_LNG) => {
+  setManualLocation: (
+    cityName,
+    latitude = DEFAULT_LAT,
+    longitude = DEFAULT_LNG,
+  ) => {
     set({
       cityName,
       latitude,
@@ -60,7 +69,9 @@ export const useLocationStore = create<LocationState>((set, get) => ({
 
   requestLocation: async () => {
     // Tránh gọi nhiều lần
-    if (get().loading) {return;}
+    if (get().loading) {
+      return;
+    }
 
     set({ loading: true, error: null });
 
@@ -97,7 +108,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
     Geolocation.requestAuthorization();
 
     Geolocation.getCurrentPosition(
-      async (position) => {
+      async position => {
         const { latitude, longitude } = position.coords;
         const cityName = await reverseGeocode(latitude, longitude);
         set({
@@ -109,7 +120,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
           error: null,
         });
       },
-      (error) => {
+      error => {
         console.warn('Geolocation error:', error.message);
         // Lỗi → giữ vị trí mặc định Nha Trang
         set({

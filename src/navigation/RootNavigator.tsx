@@ -7,6 +7,7 @@ import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import EditProfileScreen from '../screens/account/EditProfileScreen';
+import ConfirmBookingScreen from '../screens/booking/ConfirmBookingScreen';
 import { RootStackParamList } from './types';
 import { COLORS } from '../constants/theme';
 
@@ -32,6 +33,7 @@ const RootNavigator = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        <Stack.Screen name="ConfirmBooking" component={ConfirmBookingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
