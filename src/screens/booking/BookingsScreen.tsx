@@ -26,11 +26,21 @@ const BookingsScreen = () => {
 
   // Filter restaurants based on location
   const filteredRestaurants = React.useMemo(() => {
-    return MOCK_RESTAURANTS.filter(
-      restaurant =>
-        restaurant.address.toLowerCase().includes(location.toLowerCase()) ||
-        location.toLowerCase().includes(restaurant.address.toLowerCase()),
-    );
+    const normalize = (str: string) =>
+      str
+        .toLowerCase()
+        .replace(/thành phố|tp\.|quận|q\.|phường|p\./gi, '')
+        .trim();
+
+    const normalizedLocation = normalize(location);
+
+    return MOCK_RESTAURANTS.filter(restaurant => {
+      const normalizedAddress = normalize(restaurant.address);
+      return (
+        normalizedAddress.includes(normalizedLocation) ||
+        normalizedLocation.includes(normalizedAddress)
+      );
+    });
   }, [location]);
 
   const handleOpenBookingSheet = (type: 'date' | 'time' | 'guests') => {

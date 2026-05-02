@@ -38,7 +38,8 @@ import { useLocationStore } from '../../store/useLocationStore';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { t } = useTranslation();
-  const { user } = useAuthStore();
+  const { user, userProfiles } = useAuthStore();
+  console.log('userProfiles', userProfiles);
   const { requestLocation, permissionGranted } = useLocationStore();
   const [activeCategory, setActiveCategory] = useState('all');
   const bookingSheetRef = useRef<BottomSheetModal>(null);
@@ -58,6 +59,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     }
   }, [permissionGranted, requestLocation]);
 
+  const displayName =
+    (user && userProfiles[user.email]?.name) || user?.username || 'Guest';
+
   return (
     <SafeScreen>
       <HeaderHome />
@@ -68,7 +72,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       >
         <View className="px-5 mt-3">
           <Text className="text-xl font-bold">
-            {t('hello_user', { name: user?.username || 'Guest' })}
+            {t('hello_user', { name: displayName })}
           </Text>
           <Text className="text-gray-500 text-sm">{t('home_question')}</Text>
         </View>

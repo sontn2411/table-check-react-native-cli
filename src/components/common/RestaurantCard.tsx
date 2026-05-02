@@ -24,6 +24,7 @@ const RestaurantCard = ({
     <TouchableOpacity
       activeOpacity={0.9}
       style={[styles.card, !horizontal && styles.verticalCard]}
+      onPress={() => navigation.navigate('RestaurantDetail', { restaurant })}
     >
       <Image
         source={{ uri: restaurant.image }}
@@ -62,7 +63,10 @@ const RestaurantCard = ({
 
         <TouchableOpacity 
           style={styles.bookButton}
-          onPress={() => navigation.navigate('ConfirmBooking', { restaurant })}
+          onPress={(e) => {
+            e.stopPropagation();
+            navigation.navigate('ConfirmBooking', { restaurant });
+          }}
         >
           <Text style={styles.bookButtonText}>Đặt bàn ngay</Text>
         </TouchableOpacity>

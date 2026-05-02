@@ -1,3 +1,9 @@
+export interface MenuItem {
+  name: string;
+  price: string;
+  image: string;
+}
+
 export interface Restaurant {
   id: string;
   name: string;
@@ -11,6 +17,12 @@ export interface Restaurant {
   isFeatured?: boolean;
   latitude?: number;
   longitude?: number;
+  description?: string;
+  phone?: string;
+  openingHours?: string;
+  images?: string[];
+  menu?: MenuItem[];
+  amenities?: string[];
 }
 
 export const CATEGORIES = [
@@ -66,6 +78,43 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: true,
     latitude: 21.0094,
     longitude: 105.8412,
+    description:
+      'Sushi Way mang đến trải nghiệm ẩm thực Nhật Bản đích thực với nguyên liệu tươi sống nhập khẩu trực tiếp. Không gian sang trọng, phục vụ chuyên nghiệp, thực đơn đa dạng từ sashimi, nigiri đến các set combo đặc biệt.',
+    phone: '024 3978 1234',
+    openingHours: '10:00 - 22:00',
+    images: [
+      'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?auto=format&fit=crop&w=800&q=80',
+    ],
+    menu: [
+      {
+        name: 'Sashimi Tổng Hợp',
+        price: '350.000đ',
+        image:
+          'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Set Nigiri Đặc Biệt',
+        price: '280.000đ',
+        image:
+          'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tempura Tôm',
+        price: '180.000đ',
+        image:
+          'https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Ramen Tonkotsu',
+        price: '150.000đ',
+        image:
+          'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
+    amenities: ['wifi', 'parking', 'privateRoom', 'airConditioner', 'nonsmoking'],
   },
   {
     id: '2',
@@ -81,6 +130,37 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: true,
     latitude: 21.0430,
     longitude: 105.8200,
+    description:
+      'Pizza 4P\'s nổi tiếng với pizza nướng lò củi truyền thống Ý kết hợp nguyên liệu tươi ngon từ trang trại riêng. Phô mai mozzarella tự làm tại chỗ, không gian hiện đại và ấm cúng.',
+    phone: '024 3266 4545',
+    openingHours: '10:00 - 22:30',
+    images: [
+      'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=80',
+    ],
+    menu: [
+      {
+        name: 'Burrata Pizza',
+        price: '295.000đ',
+        image:
+          'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Parma Ham Pizza',
+        price: '275.000đ',
+        image:
+          'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cream Cheese Pasta',
+        price: '195.000đ',
+        image:
+          'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
+    amenities: ['wifi', 'parking', 'airConditioner', 'nonsmoking'],
   },
   {
     id: '3',
@@ -96,6 +176,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 21.0512,
     longitude: 105.8777,
+    description: 'Thịt nướng Hàn Quốc thượng hạng với không gian mang đậm phong cách đường phố Seoul.',
+    phone: '024 7300 8888',
+    openingHours: '10:00 - 22:00',
+    amenities: ['wifi', 'parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '4',
@@ -111,6 +218,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 21.0285,
     longitude: 105.7942,
+    description: 'Không gian làm việc lý tưởng cùng những ly cà phê Việt Nam chất lượng.',
+    phone: '1800 6936',
+    openingHours: '07:00 - 22:30',
+    amenities: ['wifi', 'airConditioner', 'nonsmoking'],
+    images: ['https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '5',
@@ -125,6 +259,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: true,
     latitude: 21.0285,
     longitude: 105.8542,
+    description: 'Tinh hoa ẩm thực Trung Hoa với hơn 50 loại Dimsum được chế biến tươi mỗi ngày.',
+    phone: '024 1234 5678',
+    openingHours: '09:00 - 21:00',
+    amenities: ['wifi', 'parking', 'privateRoom'],
+    images: ['https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '6',
@@ -139,6 +300,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 21.0245,
     longitude: 105.8412,
+    description: 'Thưởng thức steak hảo hạng trong không gian rooftop view toàn thành phố.',
+    phone: '090 123 4567',
+    openingHours: '17:00 - 23:30',
+    amenities: ['wifi', 'parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '7',
@@ -153,6 +341,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: true,
     latitude: 21.0388,
     longitude: 105.8200,
+    description: 'Lẩu Đài Loan cao cấp với nước lẩu ngọt thanh và thịt bò Wagyu tuyệt hảo.',
+    phone: '024 9999 8888',
+    openingHours: '10:00 - 22:00',
+    amenities: ['wifi', 'parking', 'privateRoom', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1552590635-27c2c2128b15?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '8',
@@ -167,6 +382,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 21.0155,
     longitude: 105.8466,
+    description: 'Quán bún chả nổi tiếng từng đón cựu Tổng thống Mỹ Obama.',
+    phone: '024 3943 4106',
+    openingHours: '08:00 - 20:30',
+    amenities: ['parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1562607378-d7bb74187313?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   // --- NHA TRANG RESTAURANTS ---
   {
@@ -182,6 +424,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: true,
     latitude: 12.2356,
     longitude: 109.1969,
+    description: 'Không gian thư giãn sát bãi biển tuyệt đẹp tại Nha Trang.',
+    phone: '0258 3524 628',
+    openingHours: '07:00 - 02:00',
+    amenities: ['wifi', 'parking', 'nonsmoking'],
+    images: ['https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '10',
@@ -196,6 +465,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 12.2322,
     longitude: 109.1965,
+    description: 'Thưởng thức bia tươi craft và pizza hải sản trên bãi biển Nha Trang.',
+    phone: '0258 3521 948',
+    openingHours: '08:00 - 24:00',
+    amenities: ['wifi', 'parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '11',
@@ -210,6 +506,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: true,
     latitude: 12.2452,
     longitude: 109.1968,
+    description: 'Hải sản tươi sống bậc nhất Nha Trang với chuẩn chế biến 5 sao.',
+    phone: '0258 3737 777',
+    openingHours: '06:00 - 22:00',
+    amenities: ['wifi', 'parking', 'privateRoom', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '12',
@@ -224,6 +547,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 12.2536,
     longitude: 109.1964,
+    description: 'Thương hiệu bò nướng lâu đời và nổi tiếng nhất tại Nha Trang.',
+    phone: '0258 3821 391',
+    openingHours: '10:00 - 23:00',
+    amenities: ['parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '13',
@@ -238,6 +588,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 12.2415,
     longitude: 109.1931,
+    description: 'Thịt nướng Hàn Quốc thượng hạng tại trung tâm Nha Trang.',
+    phone: '0258 7300 111',
+    openingHours: '10:00 - 22:00',
+    amenities: ['wifi', 'parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   },
   {
     id: '14',
@@ -252,6 +629,33 @@ export const MOCK_RESTAURANTS: Restaurant[] = [
     isFeatured: false,
     latitude: 12.2612,
     longitude: 109.1985,
+    description: 'Tận hưởng hải sản và đồ uống với view biển toàn cảnh tuyệt đẹp.',
+    phone: '090 123 4567',
+    openingHours: '06:30 - 23:30',
+    amenities: ['wifi', 'parking', 'airConditioner'],
+    images: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'],
+    menu: [
+      {
+        name: 'Thăn bò Úc áp chảo',
+        price: '350.000đ',
+        image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Mỳ Ý sốt kem nấm',
+        price: '180.000đ',
+        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Cá hồi áp chảo',
+        price: '290.000đ',
+        image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80',
+      },
+      {
+        name: 'Tiramisu',
+        price: '120.000đ',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=80',
+      },
+    ],
   }
 ];
 

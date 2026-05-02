@@ -33,16 +33,19 @@ const reverseGeocode = async (lat: number, lng: number): Promise<string> => {
       },
     );
     const data = await response.json();
-    console.log('====', data);
-    const city =
-      data.address?.city ||
-      data.address?.town ||
-      data.address?.county ||
-      data.address?.state ||
-      'Không xác định';
-    const state = data.address?.state || '';
-    return state && city !== state ? `${city}, ${state}` : city;
-  } catch {
+    console.log('==== Reverse Geocode Result:', data);
+
+    const addr = data.address || {};
+    // Ưu tiên lấy City hoặc Town làm tên thành phố
+    const city = addr.city || addr.town || addr.municipality || addr.village || addr.county || '';
+    const state = addr.state || '';
+
+    if (city && state && city !== state) {
+      return `${city}, ${state}`;
+    }
+    return city || state || 'Không xác định';
+  } catch (error) {
+    console.error('Reverse geocode error:', error);
     return 'Không xác định';
   }
 };
@@ -110,6 +113,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
     Geolocation.getCurrentPosition(
       async position => {
         const { latitude, longitude } = position.coords;
+        console.log('===== position', position);
         const cityName = await reverseGeocode(latitude, longitude);
         set({
           latitude,

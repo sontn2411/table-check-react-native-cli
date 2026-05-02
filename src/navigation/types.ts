@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Register: undefined;
   EditProfile: undefined;
   ConfirmBooking: { restaurant: Restaurant };
+  RestaurantDetail: { restaurant: Restaurant };
 };
 
 export type MainTabParamList = {

@@ -43,12 +43,14 @@ const HeaderHome = () => {
       <View className="flex-row items-center justify-between">
         <TouchableOpacity
           onPress={handleOpenLocationSheet}
-          className="flex-row items-center gap-1"
+          className="flex-1 flex-row items-center mr-2"
         >
           <MapPin color="#8e4ae7" size={20} />
-          <View className="flex-row items-center">
-            <Text className="text-base font-semibold">{cityName}</Text>
-            <ChevronDown color="#8e4ae7" size={15} />
+          <View className="flex-1 flex-row items-center flex-wrap ml-1">
+            <Text className="text-base font-semibold text-gray-900">
+              {cityName.replace(/Phường/gi, 'P.')}
+            </Text>
+            <ChevronDown color="#8e4ae7" size={15} className="ml-1" />
           </View>
         </TouchableOpacity>
 
