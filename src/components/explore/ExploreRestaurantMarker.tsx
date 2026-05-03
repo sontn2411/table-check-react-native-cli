@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Marker, Callout, CalloutSubview } from 'react-native-maps';
 import { Star, MapPin } from 'lucide-react-native';
@@ -23,10 +23,18 @@ const ExploreRestaurantMarker = ({
   onPress,
   onDismiss,
 }: ExploreRestaurantMarkerProps) => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const markerRef = useRef<any>(null);
+
+  const handleDismiss = () => {
+    markerRef.current?.hideCallout();
+    onDismiss();
+  };
 
   return (
     <Marker
+      ref={markerRef}
       coordinate={{
         latitude: restaurant.latitude!,
         longitude: restaurant.longitude!,
@@ -57,14 +65,14 @@ const ExploreRestaurantMarker = ({
                 {restaurant.name}
               </Text>
               {Platform.OS === 'ios' ? (
-                <CalloutSubview onPress={onDismiss}>
+                <CalloutSubview onPress={handleDismiss}>
                   <TouchableOpacity style={styles.calloutClose}>
                     <Text style={styles.calloutCloseText}>×</Text>
                   </TouchableOpacity>
                 </CalloutSubview>
               ) : (
                 <TouchableOpacity
-                  onPress={onDismiss}
+                  onPress={handleDismiss}
                   style={styles.calloutClose}
                 >
                   <Text style={styles.calloutCloseText}>×</Text>
@@ -227,19 +235,23 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   calloutFooter: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: verticalScale(6),
     borderTopWidth: 1,
     borderTopColor: '#f1f5f9',
     paddingTop: verticalScale(6),
+    gap: 10,
   },
   bookButton: {
     backgroundColor: COLORS.primary,
     paddingHorizontal: scale(12),
     paddingVertical: verticalScale(6),
     borderRadius: 8,
+    minWidth: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bookButtonText: {
     color: '#ffffff',
